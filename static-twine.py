@@ -42,11 +42,15 @@ class TwineStory:
 <html> 
 	<head>
 		<title>''' + self.name + '''</title>
-		<style type="text/css">''' + self.stylesheet + '''</style>
+		<style type="text/css">
+		body {
+				white-space: pre;
+			}
+''' + self.stylesheet + '''</style>
 		<script langauge="javascript">''' + self.user_script + '''</script>
 	</head>
 	<body>
-		''' + self.node_list[i].return_html() + '''
+''' + self.node_list[i].return_html() + '''
 	</body>
 </html>''')
 			file.close()
@@ -62,10 +66,16 @@ class TwineNode:
 
 	def return_html(self):
 		'''
-		Turns all [[hyperlinks]] into <a href=>hyperlinks</a>
+		Mutations to raw text:
+			Turns all [[hyperlinks]] into <a href=>hyperlinks</a>
+			Turns all \t into 2x&nbsp;
 		'''
+
+		regex = re.compile(r'\t')
+		self.content_html = regex.sub('&nbsp;&nbsp;', self.content)
+
 		regex = re.compile(r'\[\[(.*?)\]\]')
-		self.content_html = regex.sub(replace_link, str(self.content))
+		self.content_html = regex.sub(replace_link, str(self.content_html))
 
 		return self.content_html
 
