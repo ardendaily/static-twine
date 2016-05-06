@@ -32,8 +32,9 @@ anything appearing in the story stylesheet or story javascript will be appended 
 
 ## ok great how do i use this monster
 
-`pip install beautifulsoup4 #if you don't have it already` 
-`python static-twine.py your-exported-twine-project.html`
+    `pip install beautifulsoup4 #if you don't have it already` 
+    
+    `python static-twine.py your-exported-twine-project.html`
 
 you will see pages generated for every individual branch in your project's tree, or nasty error messages if your project is *too complicated*.
 
